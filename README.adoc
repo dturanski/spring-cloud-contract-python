@@ -1,0 +1,50 @@
+= spring-cloud-contract
+An experimental Python module to support contract testing with Spring Cloud Contract. 
+
+== Usage
+
+Requirements:
+* install this module
+* create a Flask app 
+* `CONTRACT_TEST` environment variable must be defined
+* from  `spring.cloud.contract` import Stub
+
+```python
+from flask import Flask
+from spring.cloud.contract import Stub
+
+app = Flask(__name__)
+
+def send_message(val1, val2):
+    '''send a message'''
+
+stub = Stub(app)
+stub.create_stub(send_message, 'someValue', 'testing')
+app.run()
+```
+
+See link:sample/samply.py[sample.py]
+
+To run the sample:
+
+```
+export CONTRACT_TEST=true
+cd sample
+python sample.py
+```
+
+To invoke the test endpoints.
+
+```
+curl -XPOST  http://localhost:5000/springcloudcontract/message
+curl -XPOST  http://localhost:5000/springcloudcontract/bad
+curl -XPOST  http://localhost:5000/springcloudcontract/function1
+```
+
+== Build
+To install the module in your Python 3 environment
+
+```
+python setup.py install
+```
+
