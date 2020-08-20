@@ -23,7 +23,7 @@ stub.create_stub(send_message, 'someValue', 'testing')
 app.run()
 ```
 
-See link:sample/samply.py[sample/sample.py]
+See link:sample/sample.py[sample.py]
 
 To run the sample:
 
